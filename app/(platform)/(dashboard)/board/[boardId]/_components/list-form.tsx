@@ -57,7 +57,7 @@ export const ListForm = () => {
     const title = formData.get('title') as string;
     const boardId = formData.get('boardId') as string;
 
-    execute({ title, id: boardId });
+    execute({ title, boardId });
   };
 
   if (isEditing) {

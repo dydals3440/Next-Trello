@@ -16,7 +16,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
     };
   }
 
-  const { title, id: boardId } = data;
+  const { title, boardId } = data;
   let list;
 
   try {
