@@ -15,15 +15,50 @@ datasource db {
 }
 
 model Board {
-  id String @id @default(uuid())
-  orgId String
-  title String
-  imageId String
+  id            String @id @default(uuid())
+  orgId         String
+  title         String
+  imageId       String
   imageThumbUrl String @db.Text
-  imageFullUrl String @db.Text
+  imageFullUrl  String @db.Text
   imageUserName String @db.Text
   imageLinkHTML String @db.Text
 
+  lists         List[]
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model List {
+  id      String @id @default(uuid())
+  title   String
+  order   Int
+
+  // relation
+  boardId String
+  board   Board @relation(fields: [boardId], references: [id], onDelete: Cascade)
+
+  cards Card[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@index([boardId])
+}
+
+model Card {
+  id    String @id @default(uuid())
+  title String
+  order Int
+  // description은 null이 허용 String?
+  description String? @db.Text
+  
+  listId String
+  list   List @relation(fields: [listId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  // @@index 표현식은 인덱스를 생성하는데 사용. 여러 칼럼에 대한 인덱스 생성, 인덱스에 대한 이름 명시하고 싶을 떄 사용.
+  @@index([listId])
 }
