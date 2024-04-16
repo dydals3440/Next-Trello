@@ -39,7 +39,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
       select: { order: true },
     });
 
-    console.log(lastList);
+    console.log('ㅎㅇ', lastList);
 
     const newOrder = lastList ? lastList.order + 1 : 1;
 
