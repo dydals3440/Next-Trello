@@ -62,3 +62,28 @@ model Card {
   // @@index 표현식은 인덱스를 생성하는데 사용. 여러 칼럼에 대한 인덱스 생성, 인덱스에 대한 이름 명시하고 싶을 떄 사용.
   @@index([listId])
 }
+
+enum ACTION {
+  CREATE
+  UPDATE
+  DELETE
+}
+
+enum ENTITY_TYPE {
+  BOARD
+  LIST
+  CARD
+}
+
+model AuditLog {
+  id String @id @default(uuid())
+  orgId String
+  action ACTION
+  entityId String
+  userId String
+  userImage String @db.Text
+  userName String @db.Text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
