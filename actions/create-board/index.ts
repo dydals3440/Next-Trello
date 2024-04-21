@@ -70,7 +70,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
         imageLinkHTML,
       },
     });
-    // 생성하면 이를 통해 증가시켜줌.
+    // 생성하면 이를 통해 증가시켜줌. (lib함수)
     await incrementAvailableCount();
 
     await createAuditLog({
