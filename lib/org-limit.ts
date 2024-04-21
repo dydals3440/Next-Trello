@@ -75,7 +75,7 @@ export const hasAvailableCount = async () => {
     return false;
   }
 };
-
+// 현재 가용가능한 보드카운트가 몇개인지 체크
 export const getAvailableCount = async () => {
   const { orgId } = auth();
 
